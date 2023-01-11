@@ -27,4 +27,17 @@ public class LineString implements Geometry{
     public String getType(){
         return "LineString";
     }
+
+    @Override
+    public boolean isEmpty(){
+        if (points.size()==0){
+            return true;
+        }
+        for (Point P : points){
+            if (P.isEmpty()){
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -13,7 +13,7 @@ public class LineStringTest {
     @Test
     public void testDefaultConstructor(){
         LineString LS = new LineString();
-        Assert.assertEquals(0, LS.getNumPoints(), EPSILON);
+        Assert.assertEquals(0, LS.getNumPoints());
     }
 
     @Test
@@ -26,14 +26,27 @@ public class LineStringTest {
 
         LineString LS = new LineString(list);
 
-        Assert.assertEquals(2, LS.getNumPoints(), EPSILON);
-        Assert.assertEquals(1.0, LS.getPointN(1).getCoordinate().getX(), EPSILON);
+        Assert.assertEquals(2, LS.getNumPoints());
+        Assert.assertEquals(LS.getPointN(1), p2);
     }
 
     @Test
     public void testGetType(){
         LineString LS = GeometryTestFactory.getDefaultLineString();
         Assert.assertEquals("LineString", LS.getType());
+    }
+
+    @Test
+    public void testIsEmpty(){
+        LineString Empty = new LineString();
+        Assert.assertTrue(Empty.isEmpty());
+        LineString LS = GeometryTestFactory.getDefaultLineString();
+        Assert.assertFalse(LS.isEmpty());
+        Point P = new Point();
+        List<Point> list = new ArrayList<>();
+        list.add(P);
+        LineString LS2 = new LineString(list);
+        Assert.assertTrue(LS2.isEmpty());
     }
 
 }
