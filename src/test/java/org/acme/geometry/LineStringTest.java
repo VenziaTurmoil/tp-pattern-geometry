@@ -27,7 +27,13 @@ public class LineStringTest {
         LineString LS = new LineString(list);
 
         Assert.assertEquals(2, LS.getNumPoints(), EPSILON);
-        Assert.assertEquals(10.0, LS.getPointN(1).getCoordinate().getX(), EPSILON);
+        Assert.assertEquals(1.0, LS.getPointN(1).getCoordinate().getX(), EPSILON);
+    }
+
+    @Test
+    public void testGetType(){
+        LineString LS = GeometryTestFactory.getDefaultLineString();
+        Assert.assertEquals("LineString", LS.getType());
     }
 
 }

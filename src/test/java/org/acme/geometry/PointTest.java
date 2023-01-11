@@ -24,5 +24,11 @@ public class PointTest {
         Assert.assertEquals(C.getY(), C2.getY(), EPSILON);
     }
 
+    @Test
+    public void testGetType(){
+        Point P = GeometryTestFactory.getDefaultPoint();
+        Assert.assertEquals("Point", P.getType());
+    }
+
 }
 
