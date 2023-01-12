@@ -33,5 +33,14 @@ public class EnvelopeTest {
         Assert.assertTrue(E.isEmpty());
     }
 
+    @Test
+    public void testEquals(){
+        Envelope E1 = new Envelope(new Coordinate(), new Coordinate(3.0, 4.0));
+        Envelope E2 = new Envelope(new Coordinate(), new Coordinate(3.0, 4.0));
+        Assert.assertTrue(E1.equals(E2));
+
+        Point P = new Point();
+        Assert.assertFalse(E1.equals(P));
+    }
 
 }

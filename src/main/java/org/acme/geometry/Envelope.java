@@ -35,4 +35,29 @@ public class Envelope {
     public double getYmax(){
         return this.topRight.getY();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        // self check
+        if (this == o) {
+            return true;
+        } else
+            // null check
+            if (o == null) {
+                return false;
+            } else
+                // type check and cast
+                if (getClass() != o.getClass()) {
+                    return false;
+                } else {
+                    final Envelope E = (Envelope) o;
+                    // field comparison
+                    return (
+                            this.getXmin() == E.getXmin() ||
+                                    this.getYmin() == E.getYmin() ||
+                                    this.getXmax() == E.getXmax() ||
+                                    this.getYmax() == E.getYmax()
+                    );
+                }
+    }
 }
