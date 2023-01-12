@@ -14,5 +14,5 @@ public interface Geometry {
 
     Envelope getEnvelope();
 
-
+    void accept(GeometryVisitor visitor);
 }

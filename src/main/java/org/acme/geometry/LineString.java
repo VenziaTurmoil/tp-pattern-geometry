@@ -90,4 +90,9 @@ public class LineString implements Geometry{
         }
         return EB.build();
     }
+
+    @Override
+    public void accept(GeometryVisitor visitor){
+        visitor.visit(this);
+    }
 }

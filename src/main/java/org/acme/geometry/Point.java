@@ -62,4 +62,9 @@ public class Point implements Geometry{
         EB.insert(this.coordinate);
         return EB.build();
     }
+
+    @Override
+    public void accept(GeometryVisitor visitor){
+        visitor.visit(this);
+    }
 }
