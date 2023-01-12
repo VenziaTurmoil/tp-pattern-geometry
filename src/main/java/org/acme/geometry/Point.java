@@ -56,12 +56,14 @@ public class Point extends AbstractGeometry {
         return new Point(new Coordinate(x, y));
     }
 
+    /*
     @Override
     public Envelope getEnvelope(){
         EnvelopeBuilder EB = new EnvelopeBuilder();
         EB.insert(this.coordinate);
         return EB.build();
     }
+    */
 
     @Override
     public void accept(GeometryVisitor visitor){

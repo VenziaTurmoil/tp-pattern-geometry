@@ -82,6 +82,7 @@ public class LineString extends AbstractGeometry {
         return new LineString(list);
     }
 
+    /*
     @Override
     public Envelope getEnvelope(){
         EnvelopeBuilder EB = new EnvelopeBuilder();
@@ -90,6 +91,7 @@ public class LineString extends AbstractGeometry {
         }
         return EB.build();
     }
+    */
 
     @Override
     public void accept(GeometryVisitor visitor){
