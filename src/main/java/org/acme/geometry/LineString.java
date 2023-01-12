@@ -1,5 +1,6 @@
 package org.acme.geometry;
 
+import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,5 +54,32 @@ public class LineString implements Geometry{
                 p.translate(dx, dy);
             }
         }
+    }
+
+    @Override
+    public boolean isEqual(Geometry geom) {
+        if (geom instanceof LineString) {
+            if (this.getNumPoints()==((LineString) geom).getNumPoints()) {
+                boolean test = true;
+                for (int i = 0; i < this.getNumPoints(); i++) {
+                    test = this.getPointN(i).isEqual(
+                            ((LineString) geom).getPointN(i)
+                    );
+                }
+                return test;
+            }
+            else { return false; }
+        }
+        else{ return false; }
+    }
+
+
+    @Override
+    public LineString clone(){
+        List<Point> list = new ArrayList<>();
+        for (Point p : points){
+            list.add(p.clone());
+        }
+        return new LineString(list);
     }
 }

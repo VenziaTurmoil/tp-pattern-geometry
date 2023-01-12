@@ -37,4 +37,24 @@ public class Point implements Geometry{
             throw new Exception("Invalid Geometry: cant translate");
         }
     }
+
+    @Override
+    public boolean isEqual(Geometry geom) {
+        if (geom instanceof Point) {
+            return
+                    (this.coordinate.getX() == ((Point) geom).coordinate.getX()
+                            || this.coordinate.getY() == ((Point) geom).coordinate.getY());
+        }
+        else{ return false; }
+    }
+
+    @Override
+    public Point clone(){
+        double x = this.coordinate.getX();
+        double y = this.coordinate.getY();
+
+        return new Point(new Coordinate(x, y));
+    }
+
+
 }

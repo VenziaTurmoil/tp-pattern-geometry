@@ -60,5 +60,26 @@ public class PointTest {
         P.translate(1.0, 1.0);
     }
 
+    @Test
+    public void testIsEqual(){
+        Point p1 = GeometryTestFactory.getDefaultPoint();
+        Point p2 = new Point(new Coordinate(1.0, 2.0));
+        Assert.assertTrue(p1.isEqual(p2));
+
+        Point p3 = new Point(new Coordinate(2.0, 1.0));
+        Assert.assertFalse(p1.isEqual(p3));
+
+        LineString LS = GeometryTestFactory.getDefaultLineString();
+        Assert.assertFalse(p1.isEqual(LS));
+    }
+
+    @Test
+    public void testClone(){
+        Point P = GeometryTestFactory.getDefaultPoint();
+        Point copy = P.clone();
+
+        Assert.assertTrue(P.isEqual(copy));
+    }
+
 }
 

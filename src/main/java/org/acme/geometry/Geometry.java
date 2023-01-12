@@ -8,4 +8,9 @@ public interface Geometry {
 
     void translate(double dx, double dy) throws Exception;
 
+    boolean isEqual(Geometry geom);
+
+    Geometry clone();
+
+
 }

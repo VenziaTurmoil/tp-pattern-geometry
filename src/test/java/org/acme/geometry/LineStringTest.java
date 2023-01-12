@@ -73,4 +73,25 @@ public class LineStringTest {
         LS.translate(1.0, 1.0);
     }
 
+    @Test
+    public void testIsEqual(){
+        LineString l1 = GeometryTestFactory.getDefaultLineString();
+        LineString l2 = GeometryTestFactory.getDefaultLineString();
+        Assert.assertTrue(l1.isEqual(l2));
+
+        LineString l3 = new LineString();
+        Assert.assertFalse(l1.isEqual(l3));
+
+        Point P = GeometryTestFactory.getDefaultPoint();
+        Assert.assertFalse(l1.isEqual(P));
+    }
+
+    @Test
+    public void testClone(){
+        LineString LS = GeometryTestFactory.getDefaultLineString();
+        LineString copy = LS.clone();
+
+        Assert.assertTrue(LS.isEqual(copy));
+    }
+
 }
