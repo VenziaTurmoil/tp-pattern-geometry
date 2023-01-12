@@ -2,8 +2,10 @@ package org.acme.geometry;
 
 public interface Geometry {
 
-    public String getType();
+    String getType();
 
-    public boolean isEmpty();
+    boolean isEmpty();
+
+    void translate(double dx, double dy) throws Exception;
 
 }

@@ -39,5 +39,26 @@ public class PointTest {
         Assert.assertFalse(P2.isEmpty());
     }
 
+    @Test
+    public void testTranslateValid() throws Exception {
+        Point P = GeometryTestFactory.getDefaultPoint();
+        P.translate(10.0, -2.0);
+
+        Assert.assertEquals(11.0, P.getCoordinate().getX(), EPSILON);
+        Assert.assertEquals(0.0, P.getCoordinate().getY(), EPSILON);
+    }
+
+    @Test(expected = Exception.class)
+    public void testTranslateInvalid() throws Exception {
+        Point P = GeometryTestFactory.getDefaultPoint();
+        P.translate(Double.NaN, 1.0);
+    }
+
+    @Test(expected = Exception.class)
+    public void testTranslateEmpty() throws Exception{
+        Point P = new Point();
+        P.translate(1.0, 1.0);
+    }
+
 }
 

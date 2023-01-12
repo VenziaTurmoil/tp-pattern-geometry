@@ -3,6 +3,7 @@ package org.acme.geometry;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,29 @@ public class LineStringTest {
         list.add(P);
         LineString LS2 = new LineString(list);
         Assert.assertTrue(LS2.isEmpty());
+    }
+
+    @Test
+    public void testTranslateValid() throws Exception{
+        LineString LS = GeometryTestFactory.getDefaultLineString();
+        LS.translate(1.0, -1.0);
+
+        Assert.assertEquals(2.0, LS.getPointN(0).getCoordinate().getX(), EPSILON);
+        Assert.assertEquals(1.0, LS.getPointN(0).getCoordinate().getY(), EPSILON);
+        Assert.assertEquals(11.0, LS.getPointN(1).getCoordinate().getX(), EPSILON);
+        Assert.assertEquals(11.0, LS.getPointN(1).getCoordinate().getY(), EPSILON);
+    }
+
+    @Test(expected = Exception.class)
+    public void testTranslateInvalid() throws Exception{
+        LineString LS = GeometryTestFactory.getDefaultLineString();
+        LS.translate(Double.NaN, 1.0);
+    }
+
+    @Test(expected = Exception.class)
+    public void testTranslateEmpty() throws Exception{
+        LineString LS = new LineString();
+        LS.translate(1.0, 1.0);
     }
 
 }

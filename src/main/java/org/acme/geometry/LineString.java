@@ -40,4 +40,18 @@ public class LineString implements Geometry{
         }
         return false;
     }
+
+    @Override
+    public void translate(double dx, double dy) throws Exception{
+        if (new Coordinate(dx, dy).isEmpty()){
+            throw new Exception("Invalid Parameters");
+        }
+        else if (this.isEmpty()){
+            throw new Exception("Invalid Geometry: cant translate");
+        }else{
+            for (Point p : points){
+                p.translate(dx, dy);
+            }
+        }
+    }
 }
