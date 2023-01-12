@@ -11,10 +11,11 @@ public class WktWriterTest {
     public void testWrite(){
         WktWriter writer = new WktWriter();
 
-        Point P = GeometryTestFactory.getDefaultPoint();
-        Assert.assertEquals("POINT (1.0 2.0)", writer.write(P));
+        Point point = GeometryTestFactory.getDefaultPoint();
+        Assert.assertEquals("POINT (1.0 2.0)", writer.write(point));
 
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        Assert.assertEquals("LINESTRING (1.0 2.0, 10.0 12.0)", writer.write(LS));
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        Assert.assertEquals("LINESTRING (1.0 2.0, 10.0 12.0)", writer.write(lineString));
+
     }
 }

@@ -29,12 +29,12 @@ public class GeometryTestFactory {
     }
 
     public static GeometryCollection getDefaultGeometryCollection(){
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        Point P = new Point(new Coordinate(0.0, 4.0));
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        Point point = new Point(new Coordinate(0.0, 4.0));
 
         List<Geometry> list = new ArrayList<>();
-        list.add(LS);
-        list.add(P);
+        list.add(lineString);
+        list.add(point);
 
         return new GeometryCollection(list);
     }

@@ -15,53 +15,53 @@ public class PointTest {
 
     @Test
     public void testDefaultConstructor(){
-        Point P = new Point();
-        Coordinate C = P.getCoordinate();
-        Assert.assertTrue(isNaN(C.getX()));
-        Assert.assertTrue(isNaN(C.getY()));
+        Point point = new Point();
+        Coordinate c = point.getCoordinate();
+        Assert.assertTrue(isNaN(c.getX()));
+        Assert.assertTrue(isNaN(c.getY()));
     }
 
     @Test
     public void testParamsConstructor(){
-        Coordinate C = GeometryTestFactory.getDefaultCoordinate();
-        Point P = new Point(C);
-        Coordinate C2 = P.getCoordinate();
-        Assert.assertEquals(C, C2);
+        Coordinate c = GeometryTestFactory.getDefaultCoordinate();
+        Point point = new Point(c);
+        Coordinate c2 = point.getCoordinate();
+        Assert.assertEquals(c, c2);
     }
 
     @Test
     public void testGetType(){
-        Point P = GeometryTestFactory.getDefaultPoint();
-        Assert.assertEquals("Point", P.getType());
+        Point point = GeometryTestFactory.getDefaultPoint();
+        Assert.assertEquals("Point", point.getType());
     }
 
     @Test
     public void testIsEmpty(){
-        Point P = new Point();
-        Assert.assertTrue(P.isEmpty());
-        Point P2 = GeometryTestFactory.getDefaultPoint();
-        Assert.assertFalse(P2.isEmpty());
+        Point point = new Point();
+        Assert.assertTrue(point.isEmpty());
+        Point point2 = GeometryTestFactory.getDefaultPoint();
+        Assert.assertFalse(point2.isEmpty());
     }
 
     @Test
     public void testTranslateValid() throws Exception {
-        Point P = GeometryTestFactory.getDefaultPoint();
-        P.translate(10.0, -2.0);
+        Point point = GeometryTestFactory.getDefaultPoint();
+        point.translate(10.0, -2.0);
 
-        Assert.assertEquals(11.0, P.getCoordinate().getX(), EPSILON);
-        Assert.assertEquals(0.0, P.getCoordinate().getY(), EPSILON);
+        Assert.assertEquals(11.0, point.getCoordinate().getX(), EPSILON);
+        Assert.assertEquals(0.0, point.getCoordinate().getY(), EPSILON);
     }
 
     @Test(expected = Exception.class)
     public void testTranslateInvalid() throws Exception {
-        Point P = GeometryTestFactory.getDefaultPoint();
-        P.translate(Double.NaN, 1.0);
+        Point point = GeometryTestFactory.getDefaultPoint();
+        point.translate(Double.NaN, 1.0);
     }
 
     @Test(expected = Exception.class)
     public void testTranslateEmpty() throws Exception{
-        Point P = new Point();
-        P.translate(1.0, 1.0);
+        Point point = new Point();
+        point.translate(1.0, 1.0);
     }
 
     @Test
@@ -73,37 +73,37 @@ public class PointTest {
         Point p3 = new Point(new Coordinate(2.0, 1.0));
         Assert.assertFalse(p1.isEqual(p3));
 
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        Assert.assertFalse(p1.isEqual(LS));
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        Assert.assertFalse(p1.isEqual(lineString));
     }
 
     @Test
     public void testClone(){
-        Point P = GeometryTestFactory.getDefaultPoint();
-        Point copy = P.clone();
+        Point point = GeometryTestFactory.getDefaultPoint();
+        Point copy = point.clone();
 
-        Assert.assertTrue(P.isEqual(copy));
+        Assert.assertTrue(point.isEqual(copy));
     }
 
     @Test
     public void testGetEnvelope(){
-        Point P = GeometryTestFactory.getDefaultPoint();
-        Envelope E = P.getEnvelope();
+        Point point = GeometryTestFactory.getDefaultPoint();
+        Envelope envelope = point.getEnvelope();
 
-        Assert.assertEquals(P.getCoordinate().getX(), E.getXmin(), EPSILON);
-        Assert.assertEquals(P.getCoordinate().getX(), E.getXmax(), EPSILON);
-        Assert.assertEquals(P.getCoordinate().getY(), E.getYmin(), EPSILON);
-        Assert.assertEquals(P.getCoordinate().getY(), E.getYmax(), EPSILON);
+        Assert.assertEquals(point.getCoordinate().getX(), envelope.getXmin(), EPSILON);
+        Assert.assertEquals(point.getCoordinate().getX(), envelope.getXmax(), EPSILON);
+        Assert.assertEquals(point.getCoordinate().getY(), envelope.getYmin(), EPSILON);
+        Assert.assertEquals(point.getCoordinate().getY(), envelope.getYmax(), EPSILON);
     }
 
     @Test
     public void testAcceptLog() throws UnsupportedEncodingException {
-        Point P = GeometryTestFactory.getDefaultPoint();
+        Point point = GeometryTestFactory.getDefaultPoint();
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(os);
         LogGeometryVisitor visitor = new LogGeometryVisitor(out);
-        P.accept(visitor);
+        point.accept(visitor);
         String result = os.toString("UTF8");
 
         Assert.assertEquals("Je suis un point avec x=1.0 et y=2.0\n", result);
@@ -111,10 +111,10 @@ public class PointTest {
 
     @Test
     public void testAcceptWkt(){
-        Point P = GeometryTestFactory.getDefaultPoint();
+        Point point = GeometryTestFactory.getDefaultPoint();
 
         WktVisitor visitor = new WktVisitor();
-        P.accept(visitor);
+        point.accept(visitor);
         Assert.assertEquals( "POINT (1.0 2.0)\n", visitor.getResult() );
     }
 

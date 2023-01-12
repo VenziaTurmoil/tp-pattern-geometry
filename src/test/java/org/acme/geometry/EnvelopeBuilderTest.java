@@ -9,8 +9,8 @@ public class EnvelopeBuilderTest {
 
     @Test
     public void testDefaultConstructor(){
-        EnvelopeBuilder EB = new EnvelopeBuilder();
-        Envelope E = EB.build();
+        EnvelopeBuilder envelopeBuilder = new EnvelopeBuilder();
+        Envelope E = envelopeBuilder.build();
         Assert.assertTrue(
                 Double.isNaN(E.getXmin()) &&
                         Double.isNaN(E.getYmin()) &&
@@ -21,11 +21,11 @@ public class EnvelopeBuilderTest {
 
     @Test
     public void testInsert(){
-        EnvelopeBuilder EB = new EnvelopeBuilder();
-        EB.insert(new Coordinate(1.0, 2.0));
-        EB.insert(new Coordinate(3.0, 4.0));
-        EB.insert(new Coordinate(1.5, 3.5));
-        Envelope E = EB.build();
+        EnvelopeBuilder envelopeBuilder = new EnvelopeBuilder();
+        envelopeBuilder.insert(new Coordinate(1.0, 2.0));
+        envelopeBuilder.insert(new Coordinate(3.0, 4.0));
+        envelopeBuilder.insert(new Coordinate(1.5, 3.5));
+        Envelope E = envelopeBuilder.build();
 
         Assert.assertEquals(1.0, E.getXmin(), EPSILON);
         Assert.assertEquals(2.0, E.getYmin(), EPSILON);

@@ -83,17 +83,6 @@ public class LineString extends AbstractGeometry {
         return new LineString(list);
     }
 
-    /*
-    @Override
-    public Envelope getEnvelope(){
-        EnvelopeBuilder EB = new EnvelopeBuilder();
-        for (Point P : this.points){
-            EB.insert(P.getCoordinate());
-        }
-        return EB.build();
-    }
-    */
-
     @Override
     public void accept(GeometryVisitor visitor){
         visitor.visit(this);

@@ -15,8 +15,8 @@ public class LineStringTest {
 
     @Test
     public void testDefaultConstructor(){
-        LineString LS = new LineString();
-        Assert.assertEquals(0, LS.getNumPoints());
+        LineString lineString = new LineString();
+        Assert.assertEquals(0, lineString.getNumPoints());
     }
 
     @Test
@@ -27,52 +27,52 @@ public class LineStringTest {
         list.add(p1);
         list.add(p2);
 
-        LineString LS = new LineString(list);
+        LineString lineString = new LineString(list);
 
-        Assert.assertEquals(2, LS.getNumPoints());
-        Assert.assertEquals(LS.getPointN(1), p2);
+        Assert.assertEquals(2, lineString.getNumPoints());
+        Assert.assertEquals(lineString.getPointN(1), p2);
     }
 
     @Test
     public void testGetType(){
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        Assert.assertEquals("LineString", LS.getType());
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        Assert.assertEquals("LineString", lineString.getType());
     }
 
     @Test
     public void testIsEmpty(){
         LineString Empty = new LineString();
         Assert.assertTrue(Empty.isEmpty());
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        Assert.assertFalse(LS.isEmpty());
-        Point P = new Point();
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        Assert.assertFalse(lineString.isEmpty());
+        Point point = new Point();
         List<Point> list = new ArrayList<>();
-        list.add(P);
-        LineString LS2 = new LineString(list);
-        Assert.assertTrue(LS2.isEmpty());
+        list.add(point);
+        LineString lineString2 = new LineString(list);
+        Assert.assertTrue(lineString2.isEmpty());
     }
 
     @Test
     public void testTranslateValid() throws Exception{
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        LS.translate(1.0, -1.0);
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        lineString.translate(1.0, -1.0);
 
-        Assert.assertEquals(2.0, LS.getPointN(0).getCoordinate().getX(), EPSILON);
-        Assert.assertEquals(1.0, LS.getPointN(0).getCoordinate().getY(), EPSILON);
-        Assert.assertEquals(11.0, LS.getPointN(1).getCoordinate().getX(), EPSILON);
-        Assert.assertEquals(11.0, LS.getPointN(1).getCoordinate().getY(), EPSILON);
+        Assert.assertEquals(2.0, lineString.getPointN(0).getCoordinate().getX(), EPSILON);
+        Assert.assertEquals(1.0, lineString.getPointN(0).getCoordinate().getY(), EPSILON);
+        Assert.assertEquals(11.0, lineString.getPointN(1).getCoordinate().getX(), EPSILON);
+        Assert.assertEquals(11.0, lineString.getPointN(1).getCoordinate().getY(), EPSILON);
     }
 
     @Test(expected = Exception.class)
     public void testTranslateInvalid() throws Exception{
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        LS.translate(Double.NaN, 1.0);
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        lineString.translate(Double.NaN, 1.0);
     }
 
     @Test(expected = Exception.class)
     public void testTranslateEmpty() throws Exception{
-        LineString LS = new LineString();
-        LS.translate(1.0, 1.0);
+        LineString lineString = new LineString();
+        lineString.translate(1.0, 1.0);
     }
 
     @Test
@@ -84,37 +84,37 @@ public class LineStringTest {
         LineString l3 = new LineString();
         Assert.assertFalse(l1.isEqual(l3));
 
-        Point P = GeometryTestFactory.getDefaultPoint();
-        Assert.assertFalse(l1.isEqual(P));
+        Point point = GeometryTestFactory.getDefaultPoint();
+        Assert.assertFalse(l1.isEqual(point));
     }
 
     @Test
     public void testClone(){
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        LineString copy = LS.clone();
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        LineString copy = lineString.clone();
 
-        Assert.assertTrue(LS.isEqual(copy));
+        Assert.assertTrue(lineString.isEqual(copy));
     }
 
     @Test
     public void testGetEnvelope(){
-        LineString LS = GeometryTestFactory.getDefaultLineString();
-        Envelope E = LS.getEnvelope();
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
+        Envelope envelope = lineString.getEnvelope();
 
-        Assert.assertEquals(1.0, E.getXmin(), EPSILON);
-        Assert.assertEquals(2.0, E.getYmin(), EPSILON);
-        Assert.assertEquals(10.0, E.getXmax(), EPSILON);
-        Assert.assertEquals(12.0, E.getYmax(), EPSILON);
+        Assert.assertEquals(1.0, envelope.getXmin(), EPSILON);
+        Assert.assertEquals(2.0, envelope.getYmin(), EPSILON);
+        Assert.assertEquals(10.0, envelope.getXmax(), EPSILON);
+        Assert.assertEquals(12.0, envelope.getYmax(), EPSILON);
     }
 
     @Test
     public void testAcceptLog() throws UnsupportedEncodingException {
-        LineString LS = GeometryTestFactory.getDefaultLineString();
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(os);
         LogGeometryVisitor visitor = new LogGeometryVisitor(out);
-        LS.accept(visitor);
+        lineString.accept(visitor);
         String result = os.toString("UTF8");
 
         Assert.assertEquals("Je suis une polyligne definie par 2 point(s)\n", result);
@@ -122,10 +122,10 @@ public class LineStringTest {
 
     @Test
     public void testAcceptWkt(){
-        LineString LS = GeometryTestFactory.getDefaultLineString();
+        LineString lineString = GeometryTestFactory.getDefaultLineString();
 
         WktVisitor visitor = new WktVisitor();
-        LS.accept(visitor);
+        lineString.accept(visitor);
         Assert.assertEquals( "LINESTRING (1.0 2.0, 10.0 12.0)\n", visitor.getResult() );
     }
 
