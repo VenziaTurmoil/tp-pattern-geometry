@@ -97,7 +97,7 @@ public class PointTest {
     }
 
     @Test
-    public void testAccept() throws UnsupportedEncodingException {
+    public void testAcceptLog() throws UnsupportedEncodingException {
         Point P = GeometryTestFactory.getDefaultPoint();
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -109,6 +109,14 @@ public class PointTest {
         Assert.assertEquals("Je suis un point avec x=1.0 et y=2.0\n", result);
     }
 
+    @Test
+    public void testAcceptWkt(){
+        Point P = GeometryTestFactory.getDefaultPoint();
+
+        WktVisitor visitor = new WktVisitor();
+        P.accept(visitor);
+        Assert.assertEquals( "POINT (1.0 2.0)\n", visitor.getResult() );
+    }
 
 
 }

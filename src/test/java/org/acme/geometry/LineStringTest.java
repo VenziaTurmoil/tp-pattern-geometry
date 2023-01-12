@@ -108,7 +108,7 @@ public class LineStringTest {
     }
 
     @Test
-    public void testAccept() throws UnsupportedEncodingException {
+    public void testAcceptLog() throws UnsupportedEncodingException {
         LineString LS = GeometryTestFactory.getDefaultLineString();
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -118,6 +118,15 @@ public class LineStringTest {
         String result = os.toString("UTF8");
 
         Assert.assertEquals("Je suis une polyligne definie par 2 point(s)\n", result);
+    }
+
+    @Test
+    public void testAcceptWkt(){
+        LineString LS = GeometryTestFactory.getDefaultLineString();
+
+        WktVisitor visitor = new WktVisitor();
+        LS.accept(visitor);
+        Assert.assertEquals( "LINESTRING (1.0 2.0, 10.0 12.0)\n", visitor.getResult() );
     }
 
 }
