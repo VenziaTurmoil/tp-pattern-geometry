@@ -93,4 +93,15 @@ public class LineStringTest {
         Assert.assertTrue(LS.isEqual(copy));
     }
 
+    @Test
+    public void testGetEnvelope(){
+        LineString LS = GeometryTestFactory.getDefaultLineString();
+        Envelope E = LS.getEnvelope();
+
+        Assert.assertEquals(1.0, E.getXmin(), EPSILON);
+        Assert.assertEquals(2.0, E.getYmin(), EPSILON);
+        Assert.assertEquals(10.0, E.getXmax(), EPSILON);
+        Assert.assertEquals(12.0, E.getYmax(), EPSILON);
+    }
+
 }

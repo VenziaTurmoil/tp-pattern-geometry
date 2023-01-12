@@ -12,5 +12,7 @@ public interface Geometry {
 
     Geometry clone();
 
+    Envelope getEnvelope();
+
 
 }

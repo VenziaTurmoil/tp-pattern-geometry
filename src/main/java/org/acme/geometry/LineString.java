@@ -81,4 +81,13 @@ public class LineString implements Geometry{
         }
         return new LineString(list);
     }
+
+    @Override
+    public Envelope getEnvelope(){
+        EnvelopeBuilder EB = new EnvelopeBuilder();
+        for (Point P : this.points){
+            EB.insert(P.getCoordinate());
+        }
+        return EB.build();
+    }
 }

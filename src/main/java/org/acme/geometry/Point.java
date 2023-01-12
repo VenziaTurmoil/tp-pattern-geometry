@@ -56,5 +56,10 @@ public class Point implements Geometry{
         return new Point(new Coordinate(x, y));
     }
 
-
+    @Override
+    public Envelope getEnvelope(){
+        EnvelopeBuilder EB = new EnvelopeBuilder();
+        EB.insert(this.coordinate);
+        return EB.build();
+    }
 }

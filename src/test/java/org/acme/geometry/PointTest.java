@@ -81,5 +81,16 @@ public class PointTest {
         Assert.assertTrue(P.isEqual(copy));
     }
 
+    @Test
+    public void testGetEnvelope(){
+        Point P = GeometryTestFactory.getDefaultPoint();
+        Envelope E = P.getEnvelope();
+
+        Assert.assertEquals(P.getCoordinate().getX(), E.getXmin(), EPSILON);
+        Assert.assertEquals(P.getCoordinate().getX(), E.getXmax(), EPSILON);
+        Assert.assertEquals(P.getCoordinate().getY(), E.getYmin(), EPSILON);
+        Assert.assertEquals(P.getCoordinate().getY(), E.getYmax(), EPSILON);
+    }
+
 }
 
