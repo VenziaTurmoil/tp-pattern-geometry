@@ -2,6 +2,8 @@ package org.acme.geometry;
 
 public class GeoJSONWriter implements GeometryWriter{
 
+    //TODO: REECRIRE AVEC LE PATRON VISITOR
+
     @Override
     public String getName() {
         return "GeoJSON";
