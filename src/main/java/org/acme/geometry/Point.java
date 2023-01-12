@@ -6,7 +6,7 @@ public class Point implements Geometry{
 
     public Point(){
         this.coordinate = new Coordinate();
-    };
+    }
 
     public Point(Coordinate coordinate){
         this.coordinate = coordinate;

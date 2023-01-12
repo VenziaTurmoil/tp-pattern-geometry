@@ -3,7 +3,6 @@ package org.acme.geometry;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.List;
 
