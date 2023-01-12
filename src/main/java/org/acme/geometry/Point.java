@@ -33,6 +33,7 @@ public class Point extends AbstractGeometry {
             double x = this.coordinate.getX();
             double y = this.coordinate.getY();
             this.coordinate = new Coordinate(x+dx, y+dy);
+            this.triggerChange();
         }else{
             throw new Exception("Invalid Geometry: cant translate");
         }
