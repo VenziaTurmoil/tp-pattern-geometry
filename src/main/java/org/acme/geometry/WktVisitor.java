@@ -29,4 +29,16 @@ public class WktVisitor implements GeometryVisitor{
         }
         buffer.append(")\n");
     }
+
+    @Override
+    public void visit (GeometryCollection GC){
+        buffer.append("GEOMETRYCOLLECTION (");
+        for (int i=0; i<GC.getNumGeometries(); i++){
+            GC.getGeometryN(i).accept(this);
+            if (i<GC.getNumGeometries()-1){
+                buffer.append(", ");
+            }
+        }
+        buffer.append(")\n");
+    }
 }

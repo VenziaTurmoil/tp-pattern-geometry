@@ -41,4 +41,11 @@ public class EnvelopeBuilder implements GeometryVisitor{
             this.insert(LS.getPointN(i).getCoordinate());
         }
     }
+
+    @Override
+    public void visit(GeometryCollection GC){
+        for (int i=0; i<GC.getNumGeometries(); i++){
+            GC.getGeometryN(i).accept(this);
+        }
+    }
 }

@@ -34,4 +34,15 @@ public class LogGeometryVisitor implements GeometryVisitor{
             );
         }
     }
+
+    @Override
+    public void visit(GeometryCollection GC){
+        if (!GC.isEmpty()){
+            out.println(
+                    "Je suis une colection de " +
+                            GC.getNumGeometries() +
+                            " Geometrie(s)"
+            );
+        }
+    }
 }
