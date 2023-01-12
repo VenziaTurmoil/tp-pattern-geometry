@@ -31,21 +31,21 @@ public class EnvelopeBuilder implements GeometryVisitor{
     }
 
     @Override
-    public void visit(Point P) {
-        this.insert(P.getCoordinate());
+    public void visit(Point point) {
+        this.insert(point.getCoordinate());
     }
 
     @Override
-    public void visit(LineString LS) {
-        for (int i=0; i<LS.getNumPoints(); i++){
-            this.insert(LS.getPointN(i).getCoordinate());
+    public void visit(LineString lineString) {
+        for (int i=0; i<lineString.getNumPoints(); i++){
+            this.insert(lineString.getPointN(i).getCoordinate());
         }
     }
 
     @Override
-    public void visit(GeometryCollection GC){
-        for (int i=0; i<GC.getNumGeometries(); i++){
-            GC.getGeometryN(i).accept(this);
+    public void visit(GeometryCollection geometryCollection){
+        for (int i=0; i<geometryCollection.getNumGeometries(); i++){
+            geometryCollection.getGeometryN(i).accept(this);
         }
     }
 }

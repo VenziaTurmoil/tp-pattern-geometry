@@ -30,11 +30,11 @@ public class LineString extends AbstractGeometry {
 
     @Override
     public boolean isEmpty(){
-        if (points.size()==0){
+        if (points.isEmpty()){
             return true;
         }
-        for (Point P : points){
-            if (P.isEmpty()){
+        for (Point point : points){
+            if (point.isEmpty()){
                 return true;
             }
         }

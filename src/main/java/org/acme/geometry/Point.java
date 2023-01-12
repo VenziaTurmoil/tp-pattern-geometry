@@ -43,8 +43,8 @@ public class Point extends AbstractGeometry {
     public boolean isEqual(Geometry geom) {
         if (geom instanceof Point) {
             return
-                    (this.coordinate.getX() == ((Point) geom).coordinate.getX()
-                            || this.coordinate.getY() == ((Point) geom).coordinate.getY());
+                    this.coordinate.getX() == ((Point) geom).coordinate.getX()
+                            || this.coordinate.getY() == ((Point) geom).coordinate.getY();
         }
         else{ return false; }
     }

@@ -17,7 +17,7 @@ public abstract class AbstractGeometry implements Geometry{
 
     public Envelope getEnvelope(){
         EnvelopeBuilder visitor = new EnvelopeBuilder();
-        this.accept((visitor));
+        this.accept(visitor);
         return visitor.build();
     }
 
@@ -27,8 +27,8 @@ public abstract class AbstractGeometry implements Geometry{
     }
 
     protected void triggerChange(){
-        for (GeometryListener GL : listeners){
-            GL.onChange(this);
+        for (GeometryListener listener : listeners){
+            listener.onChange(this);
         }
     }
 }

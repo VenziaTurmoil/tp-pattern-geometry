@@ -9,21 +9,21 @@ public class WktVisitor implements GeometryVisitor{
     }
 
     @Override
-    public void visit (Point P){
+    public void visit (Point point){
         buffer.append("POINT (");
-        buffer.append(P.getCoordinate().getX());
+        buffer.append(point.getCoordinate().getX());
         buffer.append(" ");
-        buffer.append(P.getCoordinate().getY());
+        buffer.append(point.getCoordinate().getY());
         buffer.append(")\n");
     }
 
     @Override
-    public void visit (LineString LS){
+    public void visit (LineString lineString){
         buffer.append("LINESTRING (");
-        for (int i = 0; i<LS.getNumPoints(); i++){
-            buffer.append(LS.getPointN(i).getCoordinate().getX() + " ");
-            buffer.append(LS.getPointN(i).getCoordinate().getY());
-            if (i< LS.getNumPoints()-1){
+        for (int i = 0; i<lineString.getNumPoints(); i++){
+            buffer.append(lineString.getPointN(i).getCoordinate().getX() + " ");
+            buffer.append(lineString.getPointN(i).getCoordinate().getY());
+            if (i< lineString.getNumPoints()-1){
                 buffer.append(", ");
             }
         }
@@ -31,11 +31,11 @@ public class WktVisitor implements GeometryVisitor{
     }
 
     @Override
-    public void visit (GeometryCollection GC){
+    public void visit (GeometryCollection geometryCollection){
         buffer.append("GEOMETRYCOLLECTION (");
-        for (int i=0; i<GC.getNumGeometries(); i++){
-            GC.getGeometryN(i).accept(this);
-            if (i<GC.getNumGeometries()-1){
+        for (int i=0; i<geometryCollection.getNumGeometries(); i++){
+            geometryCollection.getGeometryN(i).accept(this);
+            if (i<geometryCollection.getNumGeometries()-1){
                 buffer.append(", ");
             }
         }

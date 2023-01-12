@@ -15,32 +15,32 @@ public class LogGeometryVisitor implements GeometryVisitor{
     }
 
     @Override
-    public void visit(Point P) {
-        if (!P.isEmpty()) {
-            String s = "Je suis un point avec x=";
-            s += P.getCoordinate().getX() + " et y=";
-            s += P.getCoordinate().getY();
-            out.println(s);
+    public void visit(Point point) {
+        if (!point.isEmpty()) {
+            String string = "Je suis un point avec x=";
+            string += point.getCoordinate().getX() + " et y=";
+            string += point.getCoordinate().getY();
+            out.println(string);
         }
     }
 
     @Override
-    public void visit(LineString LS){
-        if (!LS.isEmpty()){
+    public void visit(LineString lineString){
+        if (!lineString.isEmpty()){
             out.println(
                     "Je suis une polyligne definie par " +
-                            LS.getNumPoints() +
+                            lineString.getNumPoints() +
                             " point(s)"
             );
         }
     }
 
     @Override
-    public void visit(GeometryCollection GC){
-        if (!GC.isEmpty()){
+    public void visit(GeometryCollection geometryCollection){
+        if (!geometryCollection.isEmpty()){
             out.println(
                     "Je suis une colection de " +
-                            GC.getNumGeometries() +
+                            geometryCollection.getNumGeometries() +
                             " Geometrie(s)"
             );
         }

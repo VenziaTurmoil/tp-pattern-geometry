@@ -17,7 +17,7 @@ public class Envelope {
     }
 
     public boolean isEmpty(){
-        return (this.bottomLeft.isEmpty() || this.topRight.isEmpty());
+        return this.bottomLeft.isEmpty() || this.topRight.isEmpty();
     }
 
     public double getXmin(){
@@ -50,14 +50,19 @@ public class Envelope {
                 if (getClass() != o.getClass()) {
                     return false;
                 } else {
-                    final Envelope E = (Envelope) o;
+                    final Envelope envelope = (Envelope) o;
                     // field comparison
-                    return (
-                            this.getXmin() == E.getXmin() ||
-                                    this.getYmin() == E.getYmin() ||
-                                    this.getXmax() == E.getXmax() ||
-                                    this.getYmax() == E.getYmax()
-                    );
+                    return
+                            this.getXmin() == envelope.getXmin() ||
+                                    this.getYmin() == envelope.getYmin() ||
+                                    this.getXmax() == envelope.getXmax() ||
+                                    this.getYmax() == envelope.getYmax()
+                    ;
                 }
+    }
+
+    @Override
+    public int hashCode(){
+        return super.hashCode();
     }
 }
